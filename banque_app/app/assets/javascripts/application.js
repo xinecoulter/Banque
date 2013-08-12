@@ -16,13 +16,30 @@
 
 var Banque = {
     getAccounts: function () {
+        var that = this;
         $.ajax({
             url: '/',
             dataType: 'json',
             data: 'GET'
         }).done(function (data) {
             console.log(data);
+            that.appendAccounts(data);
         });
+    },
+    appendAccounts: function (data) {
+        var accountsList,
+            i,
+            listElement;
+
+        accountsList = $("<ul></ul>");
+        $("#accounts").append(accountsList);
+        appendAccountsLength = data.length;
+        for (i = 0; i < appendAccountsLength; i++) {
+            listElement = $("<li></li>");
+            listElement.attr("data-id", data[i].id);
+            listElement.html(data[i].name + " $" + data[i].balance);
+            accountsList.append(listElement);
+        }
     }
 };
 
