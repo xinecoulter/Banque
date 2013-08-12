@@ -12,3 +12,15 @@
  *= require_tree .
  */
 
+div{
+  border-style: solid;
+  border-width: medium;
+}
+
+div#accounts{
+  width: 500px;
+}
+
+div#balance{
+  width: 200px;
+}
