@@ -15,6 +15,7 @@
 //= require_tree .
 
 var Banque = {
+    totalBalance: 0,
     getAccounts: function () {
         var that = this;
         $.ajax({
@@ -24,22 +25,35 @@ var Banque = {
         }).done(function (data) {
             console.log(data);
             that.appendAccounts(data);
+            that.updateBalance(data);
         });
     },
     appendAccounts: function (data) {
-        var accountsList,
-            i,
-            listElement;
+        var i,
+            appendAccountsLength,
+            accountElement;
 
-        accountsList = $("<ul></ul>");
-        $("#accounts").append(accountsList);
         appendAccountsLength = data.length;
         for (i = 0; i < appendAccountsLength; i++) {
-            listElement = $("<li></li>");
-            listElement.attr("data-id", data[i].id);
-            listElement.html(data[i].name + " $" + data[i].balance);
-            accountsList.append(listElement);
+            accountElement = $("<p></p>");
+            accountElement.attr("data-id", data[i].id);
+            accountElement.html(data[i].name + " $" + data[i].balance);
+            $("#accounts").append(accountElement);
         }
+    },
+    updateBalance: function (data) {
+        var balanceLength,
+            balanceElement,
+            j;
+
+        balanceLength = data.length;
+        for (j = 0; j < balanceLength; j++) {
+            this.totalBalance += data[j].balance;
+        }
+
+        balanceElement = $("<p></p>");
+        balanceElement.html("$" + this.totalBalance);
+        $("#balance").append(balanceElement);
     }
 };
 
