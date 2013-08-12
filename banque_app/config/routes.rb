@@ -1,6 +1,6 @@
 BanqueApp::Application.routes.draw do
 
-  root to: 'main#index'
+  root to: 'welcome#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
