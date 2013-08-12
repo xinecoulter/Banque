@@ -13,3 +13,21 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+var Banque = {
+    getAccounts: function () {
+        $.ajax({
+            url: '/',
+            dataType: 'json',
+            data: 'GET'
+        }).done(function (data) {
+            console.log(data);
+        });
+    }
+};
+
+// window onload
+$(function () {
+    Banque.getAccounts();
+    console.log("hello world");
+});
