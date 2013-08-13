@@ -28,3 +28,11 @@ div#accounts{
 div#balance{
   width: 200px;
 }
+
+div#deposit{
+  width: 200px;
+}
+
+.hide{
+  visibility: hidden;
+}

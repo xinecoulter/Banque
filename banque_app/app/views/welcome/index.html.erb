@@ -10,14 +10,23 @@
   <div id="balance">
     <p>Total Balance</p>
   </div>
-  <button id="deposit">Deposit</button>
+  <button id="deposit-button">Deposit</button>
 
 </div>
 
-<div id="deposit">
-  <form action="/" method="put">
-    <%= select_tag "account", options_from_collection_for_select(@accounts, "id", "name"), prompt: "Account" %><br/>
+<div class="hide" id="deposit">
+  <form action="/" method="post">
+    <select name="account">
+      <option value="">Account</option>
+      <% @accounts.each do |account| %>
+        <option value="<%= account.id %>">
+          <%= account.name %>
+        </option>
+      <% end %>
+    </select>
+    <input type="hidden" name="_method" value="put">
     <input type="string" id="account" placeholder="amount"/><br/>
-    <button id="deposit-to-account">Deposit</button>
+  <button id="deposit-to-account">Deposit</button>
   </form>
 </div>
+

@@ -26,6 +26,9 @@ var Banque = {
             console.log(data);
             that.appendAccounts(data);
             that.updateBalance(data);
+            $("#deposit-to-account").click(function () {
+                that.deposit(data);
+            });
         });
     },
     appendAccounts: function (data) {
@@ -55,14 +58,25 @@ var Banque = {
         balanceElement.html("$" + this.totalBalance);
         $("#balance").append(balanceElement);
     },
-    deposit: function () {
-        $("#main").hide();
+    deposit: function (data) {
+        // $.ajax({
+        //     url: '/' + data.id,
+        //     dataType: 'json',
+        //     data: account,
+        //     type: "PUT"
+        // }).done(function(data){
+        //     console.log(data);
+        // });
     },
     addAccount: function () {
-        $("#main").hide();
+
     },
     withdrawTransfer: function () {
-        $("#main").hide();
+
+    },
+    hideDeposit: function () {
+        $("#main").addClass("hide");
+        $("#deposit").removeClass("hide");
     }
 };
 
@@ -70,8 +84,8 @@ var Banque = {
 $(function () {
     Banque.getAccounts();
 
-    $("#main").on("click", "#deposit", Banque.deposit);
-    $("#main").on("click", "#add-account", Banque.addAccount);
-    $("#main").on("click", "#withdraw-transfer", Banque.withdrawTransfer);
+    $("#main").on("click", "#deposit-button", Banque.hideDeposit);
+    // $("#main").on("click", "#add-account", Banque.hide);
+    // $("#main").on("click", "#withdraw-transfer", Banque.hide);
 
 });
