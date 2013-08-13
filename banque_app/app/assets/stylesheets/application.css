@@ -15,21 +15,14 @@
 div{
   border-style: solid;
   border-width: medium;
+  width: 500px;
 }
 
 div#main{
   border: none;
 }
 
-div#accounts{
-  width: 500px;
-}
-
 div#balance{
-  width: 200px;
-}
-
-div#deposit{
   width: 200px;
 }
 

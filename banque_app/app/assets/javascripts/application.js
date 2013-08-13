@@ -29,7 +29,7 @@ var Banque = {
             console.log(data[0].id + " $" + data[0].balance);
             that.appendAccounts(data);
             that.updateBalance(data);
-            $("#deposit-to-account").click(function () {
+            $("#deposit-button").click(function () {
                 that.deposit(data);
             });
         });
@@ -118,7 +118,7 @@ var Banque = {
 $(function () {
     Banque.getAccounts();
 
-    $("#main").on("click", "#deposit-button", Banque.hideDeposit);
+    $("#main").on("click", "#main-deposit-button", Banque.hideDeposit);
     // $("#main").on("click", "#add-account", Banque.hide);
     // $("#main").on("click", "#withdraw-transfer", Banque.hide);
 

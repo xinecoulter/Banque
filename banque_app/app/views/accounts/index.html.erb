@@ -1,32 +1,40 @@
 <h1>Banque!</h1>
 
+<!-- main -->
 <div id="main">
-
   <div id="accounts">
   </div>
-  <button id="withdraw-transfer">Withdraws/Transfers</button>
-  <button id="add-account">Add an Account</button>
+  <button id="main-withdraw-transfer-button">Withdraws/Transfers</button>
+  <button id="main-add-account-button">Add an Account</button>
 
   <div id="balance">
     <p>Total Balance</p>
   </div>
-  <button id="deposit-button">Deposit</button>
-
+  <button id="main-deposit-button">Deposit</button>
 </div>
 
+<!-- deposit -->
 <div class="hide" id="deposit">
   <form action="/" method="post">
     <select id="account-to-deposit">
       <option value="">Account</option>
       <% @accounts.each do |account| %>
-        <option value="<%= account.id %>">
+        <option type="integer" value="<%= account.id %>">
           <%= account.name %>
         </option>
       <% end %>
     </select>
     <input type="hidden" name="_method" value="put">
-    <input type="string" id="deposit-value" placeholder="amount"/><br/>
-  <button id="deposit-to-account">Deposit</button>
+    <input type="float" id="deposit-value" placeholder="amount"/><br/>
+  <button id="deposit-button">Deposit</button>
   </form>
 </div>
 
+<!-- create account -->
+<div id="create-account">
+  <form action="/" method="post">
+    <input type="string" id="account-name" placeholder="Account Name" autofocus="true"/><br/>
+    <input type="float" id="starting-balance" placeholder="Starting Balance"/><br/>
+    <button id="add-account">Add an Account</button>
+  </form>
+</div>
