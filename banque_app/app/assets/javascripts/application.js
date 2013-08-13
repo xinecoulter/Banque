@@ -54,11 +54,24 @@ var Banque = {
         balanceElement = $("<p></p>");
         balanceElement.html("$" + this.totalBalance);
         $("#balance").append(balanceElement);
+    },
+    deposit: function () {
+        $("#main").hide();
+    },
+    addAccount: function () {
+        $("#main").hide();
+    },
+    withdrawTransfer: function () {
+        $("#main").hide();
     }
 };
 
 // window onload
 $(function () {
     Banque.getAccounts();
-    console.log("hello world");
+
+    $("#main").on("click", "#deposit", Banque.deposit);
+    $("#main").on("click", "#add-account", Banque.addAccount);
+    $("#main").on("click", "#withdraw-transfer", Banque.withdrawTransfer);
+
 });

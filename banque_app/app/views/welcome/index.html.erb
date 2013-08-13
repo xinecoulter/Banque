@@ -1,8 +1,23 @@
 <h1>Banque!</h1>
 
-<div id="accounts">
+<div id="main">
+
+  <div id="accounts">
+  </div>
+  <button id="withdraw-transfer">Withdraws/Transfers</button>
+  <button id="add-account">Add an Account</button>
+
+  <div id="balance">
+    <p>Total Balance</p>
+  </div>
+  <button id="deposit">Deposit</button>
+
 </div>
 
-<div id="balance">
-  <p>Total Balance</p>
+<div id="deposit">
+  <form action="/" method="put">
+    <%= select_tag "account", options_from_collection_for_select(@accounts, "id", "name"), prompt: "Account" %><br/>
+    <input type="string" id="account" placeholder="amount"/><br/>
+    <button id="deposit-to-account">Deposit</button>
+  </form>
 </div>

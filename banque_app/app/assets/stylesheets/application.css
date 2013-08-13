@@ -17,6 +17,10 @@ div{
   border-width: medium;
 }
 
+div#main{
+  border: none;
+}
+
 div#accounts{
   width: 500px;
 }
