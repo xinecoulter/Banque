@@ -32,6 +32,9 @@ var Banque = {
             $("#deposit-button").click(function () {
                 that.deposit(data);
             });
+            $("#add-account").click(function () {
+                that.addAccount();
+            });
         });
     },
     appendAccounts: function (data) {
@@ -94,13 +97,39 @@ var Banque = {
                 url: '/update/' + deposit.id,
                 dataType: 'json',
                 data: deposit,
-                type: "PUT"
+                type: 'PUT'
             }).done(function(data){
                 console.log(data);
             });
         }
     },
     addAccount: function () {
+        var newAccount;
+
+        newAccount = {
+            accountName: "",
+            startingBalance: ""
+        };
+
+        newAccount.accountName = $("#account-name");
+
+        if ($("#starting-balance").val() > 0) {
+            newAccount.startingBalance = $("#starting-balance").val();
+        } else {
+            newAccount.startingBalance = 0;
+        }
+
+        if (newAccount.accountName.length !== 0) {
+            $.ajax({
+                url: '/create',
+                dataType: 'json',
+                data: newAccount,
+                type: 'POST'
+            }).done(function(data){
+                console.log(data);
+                this.appendAccounts(data);
+            });
+        }
 
     },
     withdrawTransfer: function () {

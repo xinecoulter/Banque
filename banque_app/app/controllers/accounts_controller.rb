@@ -10,6 +10,14 @@ class AccountsController < ActionController::Base
     end
   end
 
+  def create
+    @account = Account.new(name: params[:accountName], balance: params[:startingBalance])
+    @account.save
+    respond_to do |format|
+      format.json { render json: @account }
+    end
+  end
+
   def update
     @account = Account.find(params[:id])
     @account.balance = params[:balance]
