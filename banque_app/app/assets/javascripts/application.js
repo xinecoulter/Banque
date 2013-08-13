@@ -21,9 +21,10 @@ var Banque = {
         $.ajax({
             url: '/',
             dataType: 'json',
-            data: 'GET'
+            type: 'GET'
         }).done(function (data) {
             console.log(data);
+            console.log(data[0].id + " $" + data[0].balance);
             that.appendAccounts(data);
             that.updateBalance(data);
             $("#deposit-to-account").click(function () {
@@ -59,14 +60,34 @@ var Banque = {
         $("#balance").append(balanceElement);
     },
     deposit: function (data) {
-        // $.ajax({
-        //     url: '/' + data.id,
-        //     dataType: 'json',
-        //     data: account,
-        //     type: "PUT"
-        // }).done(function(data){
-        //     console.log(data);
-        // });
+        var depositValue,
+            deposit,
+            depositLength,
+            k;
+
+        depositValue = $("#deposit-value").val();
+
+        deposit = {
+            id: "",
+            balance: ""
+        };
+        deposit.id = parseInt($("#account-to-deposit").val());
+
+        depositLength = data.length;
+        for(k = 0; k < depositLength; k++) {
+            if (deposit.id === data[k].id) {
+                deposit.balance = parseFloat(data[k].balance) + parseFloat(depositValue);
+            }
+        }
+
+        $.ajax({
+            url: '/update/' + deposit.id,
+            dataType: 'json',
+            data: deposit,
+            type: "PUT"
+        }).done(function(data){
+            console.log(data);
+        });
     },
     addAccount: function () {
 

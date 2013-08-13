@@ -16,7 +16,7 @@
 
 <div class="hide" id="deposit">
   <form action="/" method="post">
-    <select name="account">
+    <select id="account-to-deposit">
       <option value="">Account</option>
       <% @accounts.each do |account| %>
         <option value="<%= account.id %>">
@@ -25,7 +25,7 @@
       <% end %>
     </select>
     <input type="hidden" name="_method" value="put">
-    <input type="string" id="account" placeholder="amount"/><br/>
+    <input type="string" id="deposit-value" placeholder="amount"/><br/>
   <button id="deposit-to-account">Deposit</button>
   </form>
 </div>

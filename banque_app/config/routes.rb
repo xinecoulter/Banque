@@ -1,6 +1,7 @@
 BanqueApp::Application.routes.draw do
 
-  root to: 'welcome#index'
+  root to: 'accounts#index'
+  put '/update/:id' => 'accounts#update'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
