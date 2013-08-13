@@ -106,11 +106,15 @@ var Banque = {
     withdrawTransfer: function () {
 
     },
-    hideDeposit: function () {
+    showDeposit: function () {
     //adds class "hide" to element, css will make its visibility hidden
     //removes class "hide" from element, visibility will no longer be hidden
         $("#main").addClass("hide");
         $("#deposit").removeClass("hide");
+    },
+    showAccount: function () {
+        $("#main").addClass("hide");
+        $("#create-account").removeClass("hide");
     }
 };
 
@@ -118,8 +122,8 @@ var Banque = {
 $(function () {
     Banque.getAccounts();
 
-    $("#main").on("click", "#main-deposit-button", Banque.hideDeposit);
-    // $("#main").on("click", "#add-account", Banque.hide);
+    $("#main").on("click", "#main-deposit-button", Banque.showDeposit);
+    $("#main").on("click", "#main-add-account-button", Banque.showAccount);
     // $("#main").on("click", "#withdraw-transfer", Banque.hide);
 
 });
