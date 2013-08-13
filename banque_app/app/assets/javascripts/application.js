@@ -17,6 +17,8 @@
 var Banque = {
     totalBalance: 0,
     getAccounts: function () {
+    //grabs json data from index action in accounts controller
+    //adds click event for main deposit button
         var that = this;
         $.ajax({
             url: '/',
@@ -33,6 +35,7 @@ var Banque = {
         });
     },
     appendAccounts: function (data) {
+    //appends data to DOM
         var i,
             appendAccountsLength,
             accountElement;
@@ -46,6 +49,7 @@ var Banque = {
         }
     },
     updateBalance: function (data) {
+    //calculates total balance and appends to DOM
         var balanceLength,
             balanceElement,
             j;
@@ -60,12 +64,17 @@ var Banque = {
         $("#balance").append(balanceElement);
     },
     deposit: function (data) {
+    //sends json data back to accounts controller to update database with new balance
         var depositValue,
             deposit,
             depositLength,
             k;
 
-        depositValue = $("#deposit-value").val();
+        if ($("#deposit-value").val() > 0) {
+            depositValue = $("#deposit-value").val();
+        } else {
+            depositValue = 0;
+        }
 
         deposit = {
             id: "",
@@ -80,14 +89,16 @@ var Banque = {
             }
         }
 
-        $.ajax({
-            url: '/update/' + deposit.id,
-            dataType: 'json',
-            data: deposit,
-            type: "PUT"
-        }).done(function(data){
-            console.log(data);
-        });
+        if (depositValue !== null) {
+            $.ajax({
+                url: '/update/' + deposit.id,
+                dataType: 'json',
+                data: deposit,
+                type: "PUT"
+            }).done(function(data){
+                console.log(data);
+            });
+        }
     },
     addAccount: function () {
 
@@ -96,6 +107,8 @@ var Banque = {
 
     },
     hideDeposit: function () {
+    //adds class "hide" to element, css will make its visibility hidden
+    //removes class "hide" from element, visibility will no longer be hidden
         $("#main").addClass("hide");
         $("#deposit").removeClass("hide");
     }
